@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 class Program
 {
@@ -6,15 +7,12 @@ class Program
     {
         string choice = "";
         List<Entry> journal = new List<Entry>();
+        Journal journalManager = new Journal();
         Console.WriteLine("Welcome to the Journal Program");
 
 
         while (choice != "5")
         {
-
-
-
-
             Console.WriteLine("");
             Console.WriteLine("Please select one of the following choices:");
             Console.WriteLine("1: Write an entry");
@@ -24,22 +22,15 @@ class Program
             Console.WriteLine("5: Quit the program");
             Console.WriteLine("");
 
-
             Console.Write("What would you like to do? ");
             choice = Console.ReadLine();
 
-
             if (choice == "1")
-
-
             {
                 Prompt promptGenerator = new Prompt();
-               
                 string prompt = promptGenerator.GetRandomPrompt();
 
-
                 Console.WriteLine(prompt);
-
 
                 Console.Write(">");
                 string response = Console.ReadLine();
@@ -47,10 +38,7 @@ class Program
                 Entry newEntry = new Entry(prompt, response, currentDate);
 
                 journal.Add(newEntry);
-               
             }
-
-
             else if (choice == "2")
             {
                 if (journal.Count == 0)
@@ -68,33 +56,24 @@ class Program
             }
             else if (choice == "3")
             {
-                Save save = new Save();
                 Console.WriteLine("What would you like to call the file?");
                 string saveFile = Console.ReadLine();
-                save.SaveToFile(journal, saveFile);
+                journalManager.SaveToFile(journal, saveFile);
             }
-
-
             else if (choice == "4")
             {
-                Load load = new Load();
-                Console.WriteLine("What file would you like load?");
+                Console.WriteLine("What file would you like to load?");
                 string loadFile = Console.ReadLine();
-                journal = load.LoadFromFile(loadFile); // Call the LoadFromFile method
+                journal = journalManager.LoadFromFile(loadFile);
             }
-
-
             else if (choice == "5")
             {
                 Console.WriteLine("See you Later! <3");
             }
-
-
             else
             {
                 Console.WriteLine("I didn't quite get that, Please try again.");
             }
         }
-
     }
 }
