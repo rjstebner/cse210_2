@@ -8,7 +8,7 @@ class Save
         List<string> lines = new List<string>();
         foreach (Entry entry in entries)
         {
-            string line = $"{entry.Prompt},{entry.Response}";
+            string line = $"{entry.Date.ToShortDateString()}|{entry.Prompt}|{entry.Response}";
             lines.Add(line);
         }
         string fileContents = string.Join(Environment.NewLine, lines);

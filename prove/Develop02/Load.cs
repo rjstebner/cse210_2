@@ -9,7 +9,7 @@ class Load
             string[] lines = File.ReadAllLines(filename);
             foreach (string line in lines)
             {
-                string[] parts = line.Split(",");
+                string[] parts = line.Split("|");
                 if (parts.Length == 3)
                 {
                     DateTime date = DateTime.Parse(parts[0]);
