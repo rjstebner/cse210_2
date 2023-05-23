@@ -11,6 +11,8 @@ class Reference
         _chapter = chapter;
         _startVerse = startVerse;
         _endVerse = endVerse;
+
+
     }
     public Reference(string book, int chapter, int startVerse)
     {
@@ -19,5 +21,9 @@ class Reference
         _startVerse = startVerse;
     }
 
-    // Add properties for _book, _chapter, _startVerse, _endVerse if necessary
+    public string GetReference()
+    {
+        string reference = $"{_book} {_chapter} {_startVerse}";
+        return reference;
+    }    
 }

@@ -8,10 +8,11 @@ class Program
         Reference reference = new Reference("John", 3, 16);
 
         // Create a sample Scripture object
-        string text = "This is a sample scripture text with words to be hidden.";
+        string text = "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.";
+
         Scripture scripture = new Scripture(reference, text);
         Console.Clear();
-        Console.WriteLine(text);
+        Console.WriteLine($"{reference.GetReference()}: {text}");
 
         string input = "";
         while (input.ToLower() != "quit")
@@ -27,9 +28,9 @@ class Program
             else
             {
                 Console.Clear();
-                Console.Write(scripture.GetRenderedDisplay());
+                scripture.HideWords();
+                Console.WriteLine(scripture.GetRenderedDisplay());
                 Console.WriteLine();
-                
             }
         }
     }
