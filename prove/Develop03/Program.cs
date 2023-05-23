@@ -28,6 +28,7 @@ class Program
             else
             {
                 Console.Clear();
+                Console.Write($"{reference.GetReference()}: ");
                 scripture.HideWords();
                 Console.WriteLine(scripture.GetRenderedDisplay());
                 Console.WriteLine();

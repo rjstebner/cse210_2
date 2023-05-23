@@ -36,9 +36,10 @@ class Scripture
         foreach (Word word in _words)
         {
             if (word.IsHidden)
-            {
-                renderedText = renderedText.Replace(word.Text, "______");
-            }
+        {
+            string underscore = new string('_', word.Text.Length);
+            renderedText = renderedText.Replace(word.Text, underscore);
+        }
         }
         return renderedText;
     }
