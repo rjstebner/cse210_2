@@ -1,3 +1,4 @@
+using System;
 class Reference
 {
     private string _book;
@@ -11,9 +12,8 @@ class Reference
         _chapter = chapter;
         _startVerse = startVerse;
         _endVerse = endVerse;
-
-
     }
+
     public Reference(string book, int chapter, int startVerse)
     {
         _book = book;
@@ -21,9 +21,15 @@ class Reference
         _startVerse = startVerse;
     }
 
-    public string GetReference()
+    public string GetReferenceString()
     {
-        string reference = $"{_book} {_chapter} {_startVerse}";
-        return reference;
-    }    
+        if (_endVerse > 0)
+        {
+            return $"{_book} {_chapter}:{_startVerse}-{_endVerse}";
+        }
+        else
+        {
+            return $"{_book} {_chapter}:{_startVerse}";
+        }
+    }
 }

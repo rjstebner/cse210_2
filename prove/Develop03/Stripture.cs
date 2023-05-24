@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Text;
 class Scripture
 {
     private Reference _reference;
@@ -11,12 +12,22 @@ class Scripture
     {
         _reference = reference;
         _text = text;
-        _words = new List<Word>();
-        string[] wordArray = text.Split(new[] { ' ', '\t', '\n', '\r', '.', ',', ';', ':', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
-        foreach (string word in wordArray)
-        {
-            _words.Add(new Word(word));
-        }
+        _words = ExtractWords(text);
+    }
+
+    public Reference GetReference()
+    {
+        return _reference;
+    }
+
+    public string GetText()
+    {
+        return _text;
+    }
+
+    public List<Word> GetWords()
+    {
+        return _words;
     }
 
     public void HideWords()
@@ -30,22 +41,28 @@ class Scripture
         }
     }
 
+
     public string GetRenderedDisplay()
     {
-        string renderedText = _text;
+        StringBuilder display = new StringBuilder();
         foreach (Word word in _words)
         {
-            if (word.IsHidden)
-        {
-            string underscore = new string('_', word.Text.Length);
-            renderedText = renderedText.Replace(word.Text, underscore);
+            display.Append(word.IsHidden ? new string('_', word.Text.Length) : word.Text);
+            display.Append(" ");
         }
-        }
-        return renderedText;
+        return display.ToString().Trim();
     }
 
-    public string GetText()
+    private List<Word> ExtractWords(string text)
     {
-        return _text;
+        List<Word> words = new List<Word>();
+        string[] wordArray = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        foreach (string wordText in wordArray)
+        {
+            Word word = new Word(wordText);
+            words.Add(word);
+        }
+        return words;
     }
 }
+
