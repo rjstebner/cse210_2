@@ -22,50 +22,31 @@ class Activity
     }
     public int GetDuration()
     {
-        return _activityDuration;
+        Console.Write("In seconds, about how long would you like your session to last? ");
+        int activityDuration;
+        if (int.TryParse(Console.ReadLine(), out activityDuration))
+        {
+            Console.Clear();
+            _activityDuration = activityDuration;
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Please enter a valid duration in seconds.");
+        }
+        return activityDuration;
+    }
+    public int Starting(Activity activity)
+    {
+                Console.WriteLine(activity.GetName());
+                Console.WriteLine("");
+                Console.WriteLine(activity.GetDescription());
+                Console.WriteLine("");
+                int activityDuration = activity.GetDuration();
+                Animation animation = new Animation();
+                animation.GetReady();
+                
+                return activityDuration;
     }
 
-    public void GetReady()
-    {
-Console.Write("Activity Starting");
-List<string> readyAnimation = new List<string>
-{
-    "Activity Starting .....",
-    "Activity Starting .... ",
-    "Activity Starting ...  ",
-    "Activity Starting ..   ",
-    "Activity Starting .    ",
-    "Activity Starting Now  "
-};
-
-foreach (string s in readyAnimation)
-{
-    Console.Write("\r" + s);
-    Thread.Sleep(1000);
-}
-
-    }
-    public void ShowSpinner()
-{
-    List<string> spinnerAnimation = new List<string>
-    {
-        "|",
-        "/",
-        "-",
-        "\\",
-        "|"
-    };
-
-    foreach (string s in spinnerAnimation)
-    {
-        Console.Write("\r" + s);
-        Thread.Sleep(500);
-    }
-    foreach (string s in spinnerAnimation)
-    {
-        Console.Write("\r" + s);
-        Thread.Sleep(500);
-    }
-}
 
 }

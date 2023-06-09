@@ -4,52 +4,39 @@ class Program
 {
     static void Main(string[] args)
     {
+        Animation animation = new Animation();
         string choice = "";
         while (choice != "4")
         {
-            Console.Clear();
-            Console.WriteLine("-- Welcome to the Mental Wellness Program --");
-            Console.WriteLine();
-            Console.WriteLine("Menu Options");
-            Console.WriteLine("1: Breathing Activity");
-            Console.WriteLine("2: Listing Activity");
-            Console.WriteLine("3: Reflecting Activity");
-            Console.WriteLine("4: Quit");
-            Console.Write("Please select your option: ");
-            choice = Console.ReadLine();
+            Menu menu = new Menu();
+            choice = menu.GetMenu();
 
             if (choice == "1")
             {
                 Console.Clear();
                 BreathingActivity activity = new BreathingActivity();
-                Console.WriteLine(activity.GetName());
-                Console.WriteLine("");
-                Console.WriteLine(activity.GetDescription());
-                Console.WriteLine("");
-
-                Console.Write("In seconds, about how long would you like your session to last? ");
-                int duration;
-                if (int.TryParse(Console.ReadLine(), out duration))
-                {
-                    Console.Clear();
-                    activity.GetReady();
-                    activity.StartBreathingActivity(duration);
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid duration in seconds.");
-                }
+                int duration = activity.Starting(activity);
+                activity.StartBreathingActivity(duration);
             }
             else if (choice == "2")
             {
                 Console.Clear();
-                Console.WriteLine("Listing");
+                ListingActivity activity = new ListingActivity();
+                int duration = activity.Starting(activity);
+                activity.StartListingActivity(duration);
+                
             }
             else if (choice == "3")
             {
                 Console.Clear();
-                Console.WriteLine("Reflecting");
+                ReflectingActivity activity = new ReflectingActivity();
+                int duration = activity.Starting(activity);
+        
+                activity.StartReflectingActivity(duration);
+                
+                
             }
+            
             else if (choice == "4")
             {
                 Console.WriteLine("Thank you");

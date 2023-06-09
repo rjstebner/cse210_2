@@ -41,7 +41,7 @@ class BreathingActivity : Activity
             Console.WriteLine();
         }
 
-        Console.WriteLine("\rBreathing complete!");
+        Console.WriteLine($"\rYou have completed roughly {duration} second of the Breathing Activity!");
         Console.WriteLine("Press enter to continue.");
 
         Console.ReadLine(); // Wait for user input before closing the console
