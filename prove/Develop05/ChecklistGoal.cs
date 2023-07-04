@@ -43,7 +43,6 @@ public class ChecklistGoal : Goal
     public int NumTimesCompleted
     {
         get { return _numTimesCompleted; }
-        set { _numTimesCompleted = value; }
     }
 
     public override bool IsCompleted()
